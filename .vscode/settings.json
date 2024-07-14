@@ -1,0 +1,12 @@
+{
+  "material-icon-theme.folders.associations": {
+    "todolist": "app"
+  },
+  "material-icon-theme.files.associations": {
+    "page.tsx": "next",
+    "not-found.tsx": "next",
+    "layout.tsx": "next"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
