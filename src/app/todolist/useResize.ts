@@ -56,12 +56,18 @@ export const useResize = (
       }
     };
 
-    ref.current!.addEventListener('pointerdown', handlePointerDown);
+    const element = ref.current;
+
+    if (element) {
+      element.addEventListener('pointerdown', handlePointerDown);
+    }
     window.addEventListener('pointerup', handlePointerUp);
     window.addEventListener('pointermove', handlePointerMove);
 
     return () => {
-      ref.current!.removeEventListener('pointerdown', handlePointerDown);
+      if (element) {
+        element.removeEventListener('pointerdown', handlePointerDown);
+      }
       window.removeEventListener('pointerup', handlePointerUp);
       window.removeEventListener('pointermove', handlePointerMove);
     };
