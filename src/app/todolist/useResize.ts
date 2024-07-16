@@ -1,35 +1,47 @@
 import { RefObject, useEffect, useRef, useState } from 'react';
 
-type Handler = (diff: { dx: number; dy: number }) => void;
+type PointerDownHandler = () => void;
+type PointerMoveHandler = (diff: { dx: number; dy: number }) => void;
+type PointerUpHandler = () => void;
 
-export const useResize = (ref: RefObject<HTMLDivElement>, handler: Handler) => {
-  const [isPointerDown, setIsPointerDown] = useState(false);
+export const useResize = (
+  ref: RefObject<HTMLDivElement>,
+  handlers: {
+    pointerDown: PointerDownHandler;
+    pointerMove: PointerMoveHandler;
+    pointerUp: PointerUpHandler;
+  }
+) => {
   const isPointerDownRef = useRef<boolean>(false);
   const mouseDownPosition = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
-  const handlerRef = useRef<Handler>();
+  const handlersRef = useRef<{
+    pointerDown: PointerDownHandler;
+    pointerMove: PointerMoveHandler;
+    pointerUp: PointerUpHandler;
+  }>();
 
   useEffect(() => {
-    handlerRef.current = handler;
-  }, [handler]);
+    handlersRef.current = handlers;
+  }, [handlers]);
 
   useEffect(() => {
     const handlePointerDown = (e: MouseEvent) => {
-      setIsPointerDown(true);
       isPointerDownRef.current = true;
       mouseDownPosition.current = {
         x: e.pageX,
         y: e.pageY,
       };
+      handlersRef.current!.pointerDown();
     };
 
     const handlePointerUp = () => {
       if (isPointerDownRef.current) {
-        setIsPointerDown(false);
         isPointerDownRef.current = false;
         mouseDownPosition.current = {
           x: 0,
           y: 0,
         };
+        handlersRef.current!.pointerUp();
       }
     };
 
@@ -40,20 +52,20 @@ export const useResize = (ref: RefObject<HTMLDivElement>, handler: Handler) => {
         const dx = nowX - mouseDownPosition.current.x;
         const dy = nowY - mouseDownPosition.current.y;
 
-        handlerRef.current!({ dx, dy });
+        handlersRef.current!.pointerMove({ dx, dy });
       }
     };
 
-    ref.current?.addEventListener('pointerdown', handlePointerDown);
+    ref.current!.addEventListener('pointerdown', handlePointerDown);
     window.addEventListener('pointerup', handlePointerUp);
     window.addEventListener('pointermove', handlePointerMove);
 
     return () => {
-      ref.current?.removeEventListener('pointerdown', handlePointerDown);
+      ref.current!.removeEventListener('pointerdown', handlePointerDown);
       window.removeEventListener('pointerup', handlePointerUp);
       window.removeEventListener('pointermove', handlePointerMove);
     };
   }, []);
 
-  return isPointerDown;
+  return {};
 };
