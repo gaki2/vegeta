@@ -19,8 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko'>
-      <body className={clsx(inter.className, 'flex h-screen w-screen flex-row')}>
-        <NextUIProvider>
+      <body className={clsx(inter.className, 'h-screen w-screen')}>
+        <NextUIProvider className='flex h-full w-full flex-row'>
           <LeftBar />
           {children}
         </NextUIProvider>

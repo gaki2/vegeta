@@ -8,5 +8,13 @@
     "layout.tsx": "next"
   },
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // auto-close-tag 플러그인이 타입에서 작동하지 않도록 <string> 같은거에 작동하고있었음.
+  "auto-close-tag.activationOnLanguage": [
+    "html",
+    "xml",
+    "javascript",
+    "javascriptreact",
+    "typescriptreact"
+  ]
 }
