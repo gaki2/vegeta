@@ -4,6 +4,7 @@ import { type ReactNode, useRef } from 'react';
 import { useHover } from 'usehooks-ts';
 import { useResize } from './useResize';
 import { clamp } from 'es-toolkit';
+import { TodoLeftPanel } from '@/app/todolist/components/TodoLeftPanel';
 
 const MIN_WIDTH = 248;
 const MAX_WIDTH = 412;
@@ -39,7 +40,8 @@ export default function TodoListLayout({
       <div
         aria-label='투두리스트 좌패널'
         ref={wrapperRef}
-        className={`relative flex w-[248px] flex-shrink-0 flex-row border-r-[1px] bg-stone-200 ${isHover ? 'border-stone-400' : 'border-stone-300'}`}>
+        className={`title relative flex w-[248px] flex-shrink-0 select-none flex-row border-r-[1px] bg-stone-200 ${isHover ? 'border-stone-400' : 'border-stone-300'}`}>
+        <TodoLeftPanel />
         <div
           ref={controllerRef}
           aria-label='리사이즈 컨트롤'

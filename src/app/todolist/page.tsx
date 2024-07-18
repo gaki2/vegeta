@@ -1,10 +1,26 @@
-import Link from 'next/link';
+'use client';
 
-export default function Home() {
+import { useEffect, useRef } from 'react';
+import { useResizeObserver, useDebounceCallback } from 'usehooks-ts';
+
+export default function TodoListContentPage() {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  const onResize = useDebounceCallback(() => {}, 200);
+  useResizeObserver({
+    ref,
+    onResize: onResize,
+  });
+
+  useEffect(() => {
+    console.log(ref.current?.getBoundingClientRect());
+  }, []);
+
   return (
-    <main className='flex h-full w-full flex-col items-center justify-between bg-slate-300 p-24'>
-      <div>task 페이지</div>
-      <Link href={'/'}>홈으로</Link>
+    <main
+      ref={ref}
+      className='flex-coljustify-between flex h-full w-full bg-background p-12'>
+      <p className='title'>병각의 할일</p>
     </main>
   );
 }

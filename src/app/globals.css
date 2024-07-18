@@ -5,24 +5,28 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --text-color: 255,255,255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 49, 45, 56;
+    --text-color: 255,255,255;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-start-rgb));
+
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .select-none {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .title {
+    @apply text-2xl font-semibold text-text-color
   }
 }
