@@ -7,7 +7,7 @@
     "distDir": "../out"
   },
   "package": {
-    "productName": "bg_text_editor",
+    "productName": "vegeta",
     "version": "0.1.0"
   },
   "tauri": {
@@ -56,10 +56,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 900,
         "resizable": true,
-        "title": "bg_text_editor",
-        "width": 800
+        "title": "vegeta",
+        "width": 1500
       }
     ]
   }
