@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 export const LeftBar = () => {
   const pathname = usePathname();
-  const variant = pathname.includes('todolist') ? 'flat' : 'light';
+  const variant = pathname.includes('todo') ? 'flat' : 'light';
 
   return (
     <nav className='flex h-full w-24 flex-col items-center gap-4 bg-white px-2'>
@@ -23,10 +23,10 @@ export const LeftBar = () => {
         variant={variant}
         color='primary'
         as='a'
-        href='/todolist'
+        href='/todo'
         startContent={
           <svg
-            className='h-6 w-6'
+            className='h-6 w-6 outline-0'
             xmlns='http://www.w3.org/2000/svg'
             fill='currentColor'
             viewBox='0 0 24 24'>
@@ -35,6 +35,15 @@ export const LeftBar = () => {
           </svg>
         }>
         TodoList
+      </Button>
+      <Button
+        aria-label='투두리스트로 이동하기'
+        className='h-[64px] w-full flex-col gap-[2px]'
+        variant={'light'}
+        color='primary'
+        as='a'
+        href='/login'>
+        로그인
       </Button>
     </nav>
   );

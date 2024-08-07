@@ -1,0 +1,32 @@
+.editor-style {
+  height: 300px;
+  max-height: 300px;
+
+  & .cm-editor {
+    height: 100%;
+  }
+
+  & .cm-content {
+    font-size: 1rem;
+    font-family: Pretendard, system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  & .cm-focused {
+    outline: transparent;
+  }
+
+  & .cm-scroller {
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-gray-300 rounded-xl
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+  }
+}

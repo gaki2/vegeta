@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className='user-select-none flex min-h-screen flex-col items-center justify-between p-24'>
       <div>
-        <Link href={'/todolist/task'}>task 로 가기</Link>
+        <Link href={'/todo/task'}>task 로 가기</Link>
       </div>
     </main>
   );
