@@ -1,0 +1,66 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color-reverse: 23 22 31;
+  --bg-color: 255 255 255;
+  --text-color: 0 0 0;
+  --text-color-reverse: 255 255 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color-reverse: 255 255 255;
+    --bg-color: 23 22 31;
+    --text-color: 255 255 255;
+    --text-color-reverse: 0 0 0
+  }
+}
+
+body {
+  font-family: "Pretendard Variable", -apple-system, Roboto, sans-serif;
+}
+
+@layer utilities {
+  .select-none {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .content-md {
+    @apply text-large font-light text-text-color
+  }
+
+  .title-md {
+    @apply text-xl font-medium text-text-color
+  }
+
+  .title-lg {
+    @apply text-3xl font-medium text-text-color
+  }
+
+  .title {
+    @apply text-2xl font-medium text-text-color
+  }
+
+  .flex-center {
+    @apply items-center justify-center
+  }
+
+  .scroll-bar {
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-gray-300 rounded-xl
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+  }
+
+}

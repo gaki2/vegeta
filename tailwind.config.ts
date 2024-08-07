@@ -4,7 +4,7 @@ const { nextui } = require('@nextui-org/react');
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/shared/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
@@ -13,6 +13,12 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      colors: {
+        'text-color': 'rgb(var(--text-color) / <alpha-value>)',
+        'text-color-reverse': 'rgb(var(--text-color-reverse) / <alpha-value>)',
+        background: 'rgb(var(--bg-color) / <alpha-value>)',
+        'background-reverse': 'rgb(var(--bg-color-reverse) / <alpha-value>)',
       },
     },
   },
@@ -24,14 +30,15 @@ const config: Config = {
         light: {
           colors: {
             primary: {
-              DEFAULT: '#5199e9',
+              // blue-500
+              DEFAULT: '#3b82f6',
             },
           },
         },
         dark: {
           colors: {
             primary: {
-              DEFAULT: '#5199e9',
+              DEFAULT: '#3b82f6',
             },
           },
         },
