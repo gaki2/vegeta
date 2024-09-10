@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { ref, onValue } from 'firebase/database';
 import { useFirebase } from '@/firebase/FirebaseProvider';
 import { useUser } from '@/firebase/UserProvider';
+import { Todo } from '@/firebase/Todo';
 
 type Props = {
-  id: string;
+  item: Todo;
 };
 
-export const TodoItem = ({ id }: Props) => {
-  const { title } = useTodoTitle({ id });
-
-  return <div>{title}</div>;
+export const TodoItem = ({ item }: Props) => {
+  return (
+    <div>
+      <p>{item.title}</p>
+    </div>
+  );
 };
 
 export const useTodoTitle = ({ id }: { id: string }) => {

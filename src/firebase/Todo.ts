@@ -1,10 +1,11 @@
-export type Status = 'processing' | 'finished';
+export type Progress = 'IDLE' | 'PROCESSING' | 'FINISHED';
 
 export type Todo = {
+  id: string;
   title: string;
-  detail: string | null;
-  createdAt: number;
-  finishedAt: number | null;
-  status: Status;
-  isDeleted: boolean;
+  description: string | null;
+  created_at: number;
+  finished_at: number | null;
+  status: Progress;
+  is_deleted: boolean;
 };

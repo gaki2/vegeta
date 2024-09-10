@@ -6,6 +6,7 @@ import { ScanAreaObserver } from '@/app/(apps)/todo/_components/ScanAreaObserver
 import { useDragging } from '@/app/(apps)/todo/_components/useDragging';
 import { useDebounceCallback, useResizeObserver } from 'usehooks-ts';
 import { TodoItem } from '@/app/(apps)/todo/_components/todo_content/TodoItem';
+import { useTodoList } from '../todo_input/useTodoCreate';
 
 export const TodoContent = () => {
   const { name } = useUser();
@@ -38,13 +39,23 @@ export const TodoContent = () => {
     },
   });
 
+  const { data } = useTodoList();
+
+  console.log(data);
+
   return (
     <main
       ref={wrapperRef}
       className='relative flex h-full w-full cursor-default select-none flex-col bg-background p-12'>
       <p className='title cursor-default'>{`${name}의 할일`}</p>
       <ScanArea scanAreaObserver={scanAreaObserver} />
-      <TodoItem id={'qm8YMbftdrTAmho1mx56u'} />
+      {data &&
+        Object.values(data.todos).map((todo) => (
+          <TodoItem
+            key={todo.title}
+            item={todo}
+          />
+        ))}
     </main>
   );
 };

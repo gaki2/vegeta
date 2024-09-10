@@ -1,16 +1,15 @@
 .editor-style {
-  height: 300px;
-  max-height: 300px;
 
   & .cm-editor {
     height: 100%;
   }
 
   & .cm-content {
-    font-size: 1rem;
-    font-family: Pretendard, system-ui, sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
+    /*font-size: 1rem;*/
+    /*font-family: Pretendard, system-ui, sans-serif;*/
+    /*font-weight: 400;*/
+    /*line-height: 1.5;*/
+
   }
 
   & .cm-focused {

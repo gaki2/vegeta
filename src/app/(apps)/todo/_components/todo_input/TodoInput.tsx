@@ -1,45 +1,50 @@
-import { Button } from '@nextui-org/react';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Editor } from '@/app/(apps)/todo/_components/todo_input/Editor';
-import { GearIcon } from '@radix-ui/react-icons';
-import { ReactCodeMirrorRef } from '@uiw/react-codemirror';
-import { useTodoCreate } from '@/app/(apps)/todo/_components/todo_input/useTodoCreate';
+import { useNewTodo, useTodoCreate } from '@/app/(apps)/todo/_components/todo_input/useTodoCreate';
+import { parseTodo } from './parser';
+import { Todo } from '@/firebase/Todo';
+import { nanoid } from 'nanoid';
 
-const placeHolderText = `할일을 등록해주세요`;
+const placeHolderText = `dkssud`;
+
+const todoMaker = (title: string): Todo => {
+  return {
+    id: nanoid(),
+    title,
+    description: null,
+    created_at: Date.now(),
+    finished_at: null,
+    status: 'PROCESSING',
+    is_deleted: false,
+  };
+};
 
 export const TodoInput = () => {
   const [content, setContent] = useState('');
-  const { createTodo } = useTodoCreate();
-  const onClickSubmit = () => {
-    const lines = content.split('\n');
-    // console.log(lines);
-    createTodo('포모도로하기');
+  const { mutate } = useNewTodo();
+  const onSubmit = (lines: string[]) => {
+    const todos = lines
+      .filter((line) => line.startsWith('# '))
+      .map((line) => line.replace(/^#\s*/, ''));
+    if (todos.length < 1) {
+      return;
+    }
+
+    todos.forEach((todo) => {
+      mutate({ todo: todoMaker(todo), profileId: 'apple' });
+    });
   };
 
   return (
-    <div className={'w-full flex-col rounded-lg bg-yellow-100'}>
+    <div className={'w-full flex-col p-2'}>
       <Editor
+        className={'h-[200px] text-2xl [&_.cm-content]:font-sans'}
         onChange={setContent}
         onCmdEnter={(lines) => {
-          console.log(lines);
+          onSubmit(lines);
         }}
         placeholder={placeHolderText}
       />
-      <div className={'flex border-t-1 border-yellow-300 py-2'}>
-        <Button
-          className={'ml-1 bg-yellow-300'}
-          onClick={onClickSubmit}
-          color={'default'}>
-          추가하기
-        </Button>
-        <Button
-          // size={'sm'}
-          className={'ml-auto mr-1'}
-          variant={'light'}
-          isIconOnly>
-          <GearIcon />
-        </Button>
-      </div>
     </div>
   );
 };
