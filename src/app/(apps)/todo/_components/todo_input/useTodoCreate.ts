@@ -2,7 +2,9 @@ import { useUser } from '@/firebase/UserProvider';
 import { useFirebase } from '@/firebase/FirebaseProvider';
 import { set, ref, getDatabase, update } from 'firebase/database';
 import { nanoid } from 'nanoid';
-import { Status, Todo } from '@/firebase/Todo';
+import { Progress, Todo } from '@/firebase/Todo';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { add_todo, get_todo } from '@/gateway/todo_gateway';
 
 export const useTodoCreate = () => {
   const { user } = useUser();
@@ -13,7 +15,7 @@ export const useTodoCreate = () => {
     const title = text;
     const userId = user?.uid;
     const timestamp = Date.now();
-    const status: Status = 'processing';
+    const status: Progress = 'processing';
 
     if (!userId) {
       return Promise.reject('userId is none!');
@@ -37,4 +39,22 @@ export const useTodoCreate = () => {
   return {
     createTodo,
   };
+};
+
+export const useTodoList = () => {
+  return useQuery({
+    queryKey: ['getTodoList'],
+    queryFn: get_todo,
+  });
+};
+
+export const useNewTodo = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: add_todo,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['getTodoList'] });
+    },
+  });
 };

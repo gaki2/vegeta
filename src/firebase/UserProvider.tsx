@@ -20,23 +20,24 @@ export const UserContextProvider = ({
   });
 
   useEffect(() => {
-    const foo = localStorage.getItem(LocalStorageKeyMap.userInfo);
-    if (foo) {
-      const { name, photoUrl } = JSON.parse(foo) as { name: string; photoUrl: string };
-      setAuthState({
-        user: null,
-        name,
-        photoUrl,
-      });
-    }
+    // const foo = localStorage.getItem(LocalStorageKeyMap.userInfo);
+    // if (foo) {
+    //   const { name, photoUrl } = JSON.parse(foo) as { name: string; photoUrl: string };
+    //   setAuthState({
+    //     user: null,
+    //     name,
+    //     photoUrl,
+    //   });
+    // }
     const auth = getAuth();
     auth.onAuthStateChanged(async (user) => {
+      console.log(user);
       if (user) {
         setAuthState({ user, name: user.displayName!, photoUrl: user.photoURL! });
-        localStorage.setItem(
-          LocalStorageKeyMap.userInfo,
-          JSON.stringify({ name: user.displayName ?? '', photoUrl: user.photoURL ?? '' })
-        );
+        // localStorage.setItem(
+        //   LocalStorageKeyMap.userInfo,
+        //   JSON.stringify({ name: user.displayName ?? '', photoUrl: user.photoURL ?? '' })
+        // );
       }
     });
   }, []);

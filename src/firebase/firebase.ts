@@ -2,10 +2,15 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
+import { getStorage } from '@firebase/storage';
+import { GoogleAuthProvider } from 'firebase/auth';
+
+const LOCAL_HOST = 'http://localhost:3000';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD9uEqeWpn4NMH6NqYpCTVrb16xCpYObFA',
   authDomain: 'vegeta-423eb.firebaseapp.com',
+  // authDomain: LOCAL_HOST,
   projectId: 'vegeta-423eb',
   storageBucket: 'vegeta-423eb.appspot.com',
   messagingSenderId: '11573774412',
@@ -22,3 +27,8 @@ export const db = getDatabase(
 );
 
 export const auth = getAuth(app);
+
+// 이미지, 동영상 등 정적 에셋 저장소
+export const storage = getStorage(app);
+
+export const googleProvider = new GoogleAuthProvider();

@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Position } from '@/utils/position';
 import { useDragging } from '@/app/(apps)/todo/_components/useDragging';
 import { clamp } from 'es-toolkit';
-import { TodoInput } from '@/app/(apps)/todo/_components/todo_input/TodoInput';
-import { useLocalStorage } from 'usehooks-ts';
 import { LocalStorageKeyMap } from '@/app/shared/localStorageKey';
+import { Profile } from '@/app/(apps)/todo/_components/todo_left_panel/Profile';
 const MIN_WIDTH = 100;
 const MAX_WIDTH = 512;
 
@@ -47,9 +46,9 @@ export const TodoLeftPanel = () => {
     <div
       aria-label='투두리스트 좌패널'
       ref={wrapperRef}
-      className={`title relative flex w-[248px] flex-shrink-0 select-none flex-row border-r-[1px] bg-stone-100`}>
-      <div className={'w-full p-2'}>
-        <TodoInput />
+      className={`title relative flex w-[248px] flex-shrink-0 select-none flex-row rounded-2xl border-r-[1px] bg-stone-100`}>
+      <div className={'flex h-full w-full p-4'}>
+        <Profile />
       </div>
       <div
         ref={controllerRef}

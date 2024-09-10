@@ -16,7 +16,7 @@ const myTheme = createTheme({
   settings: {
     // background: ,
   },
-  styles: [{ tag: t.heading1, class: 'h1 font-bold' }],
+  styles: [{ tag: t.heading1, class: 'h1 text-3xl' }],
 });
 
 export const Editor = forwardRef<ReactCodeMirrorRef, Props>((props, ref) => {

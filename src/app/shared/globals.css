@@ -1,4 +1,7 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+/*https://fonts.google.com/selection/embed*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;1,14..32,400&family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -50,6 +53,16 @@ body {
     @apply items-center justify-center
   }
 
+  .pen-script {
+    font-family: "Nanum Pen Script", cursive, serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .noto-sans {
+    font-family: "Noto Sans KR", sans-serif;
+  }
+
   .scroll-bar {
     &::-webkit-scrollbar {
       width: 8px;
@@ -63,4 +76,16 @@ body {
     }
   }
 
+  .scroll-none {
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-transparent
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+  }
 }

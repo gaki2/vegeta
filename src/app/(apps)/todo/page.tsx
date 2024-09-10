@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { TodoLeftPanel } from '@/app/(apps)/todo/_components/TodoLeftPanel';
 import { TodoContent } from '@/app/(apps)/todo/_components/todo_content/TodoContent';
 import { Spinner } from '@nextui-org/react';
+import { TodoMainArea } from '@/app/(apps)/todo/main_area/TodoMainArea';
 
 export default function TodoPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +20,7 @@ export default function TodoPage() {
       {!isLoading && (
         <>
           <TodoLeftPanel />
-          <TodoContent />
+          <TodoMainArea />
         </>
       )}
     </div>
